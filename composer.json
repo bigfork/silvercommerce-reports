@@ -1,0 +1,39 @@
+{
+  "name": "silvercommerce/reports",
+  "description": "Add reports to a SilverCommerce install (for orders, products sold, etc)",
+    "type": "silverstripe-vendormodule",
+    "homepage": "https://github.com/silvercommerce/reports",
+    "keywords": [
+        "silverstripe",
+        "commerce",
+        "ecommerce",
+        "sales",
+        "products",
+        "reports"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Morven Lewis-Everley",
+            "email": "morven@ilateral.co.uk"
+        },
+        {
+            "name": "Mark Anderson",
+            "email": "mark@ilateral.co.uk"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/silvercommerce/reports/issues"
+    },
+    "require": {
+        "silverstripe/framework": "~4.0",
+        "silverstripe/reports": "~4.0",
+        "silvercommerce/orders-admin": "~1.0",
+        "silvercommerce/catalogue-admin": "~1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SilverCommerce\\Reports\\": "src/"
+        }
+    }
+}
