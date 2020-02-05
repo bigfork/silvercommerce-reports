@@ -42,10 +42,15 @@ class CustomerOrdersReport extends SalesReport
 
         if ($params && array_key_exists("StartDate", $params)) {
             $start = new DateTime($params["StartDate"]);
+        } else {
+            $start = new DateTime();
+            $start->modify('-30 days');
         }
 
         if ($params && array_key_exists("EndDate", $params)) {
             $end = new DateTime($params["EndDate"]);
+        } else {
+            $end = new DateTime();
         }
 
         $format = "%Y-%m-%d";
