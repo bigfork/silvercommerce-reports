@@ -4,7 +4,15 @@
 
 * First initial release
 
-
 ## 1.0.1
 
 * added extra reports for blank and disabled products
+
+## 1.0.2
+
+* Add basic report to show customer sales
+
+## 1.1.0
+
+* Improve customer sales report with more data
+* Remove sort from Sales Totals report
