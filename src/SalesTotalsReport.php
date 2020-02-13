@@ -5,7 +5,9 @@ namespace SilverCommerce\Reports;
 use SilverStripe\ORM\ArrayList;
 use SilverCommerce\Reports\SalesReport;
 use SilverStripe\ORM\FieldType\DBCurrency;
+use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
 use SilverCommerce\Reports\Items\SalesTotalsReportItem;
+use SilverStripe\Forms\GridField\GridFieldSortableHeader;
 
 
 /**
@@ -35,7 +37,7 @@ class SalesTotalsReport extends SalesReport
     public function columns()
     {
         return array(
-            "Title" => "StockID",
+            "Title" => "Report",
             "Value" => "Value"
         );
     }
@@ -50,9 +52,13 @@ class SalesTotalsReport extends SalesReport
         $total_orders->Title = _t(__CLASS__ . ".TotalOrders", "Total Orders");
         $total_orders->Value = $list->count();
 
-        $total_value = SalesTotalsReportItem::create();
-        $total_value->Title = _t(__CLASS__ . ".TotalValue", "Total Value");
-        $total_value->Value = 0;
+        $gross_value = SalesTotalsReportItem::create();
+        $gross_value->Title = _t(__CLASS__ . ".TotalGross", "Gross Total Sales (inc. Tax)");
+        $gross_value->Value = 0;
+
+        $net_value = SalesTotalsReportItem::create();
+        $net_value->Title = _t(__CLASS__ . ".TotalNet", "Net Total Sales (ex. Tax & Postage)");
+        $net_value->Value = 0;
 
         $total_postage = SalesTotalsReportItem::create();
         $total_postage->Title = _t(__CLASS__ . ".TotalPostage", "Total Postage");
@@ -63,7 +69,8 @@ class SalesTotalsReport extends SalesReport
         $total_tax->Value = 0;
 
         foreach ($list as $order) {
-            $total_value->Value += $order->Total;
+            $gross_value->Value += $order->Total;
+            $net_value->Value += $order->SubTotal;
             $total_postage->Value += $order->PostagePrice;
             $total_tax->Value += $order->TaxTotal;
         }
@@ -71,18 +78,37 @@ class SalesTotalsReport extends SalesReport
         // Clean up value apperance
         $price = DBCurrency::create();
 
-        $price->setValue($total_value->Value);
-        $total_value->Value = $price->Nice();
+        $price->setValue($gross_value->Value);
+        $gross_value->Value = $price->Nice();
+        $price->setValue($net_value->Value);
+        $net_value->Value = $price->Nice();
         $price->setValue($total_postage->Value);
         $total_postage->Value = $price->Nice();
         $price->setValue($total_tax->Value);
         $total_tax->Value = $price->Nice();
 
         $totals->add($total_orders);
-        $totals->add($total_value);
+        $totals->add($gross_value);
+        $totals->add($net_value);
         $totals->add($total_postage);
         $totals->add($total_tax);
 
         return $totals;
+    }
+
+    /**
+     * Return the parent GridField without column sorting
+     *
+     * @return \SilverStripe\Forms\FormField subclass
+     */
+    public function getReportField()
+    {
+        /** @var \SilverStripe\Forms\GridField\GridField */
+        $grid_field = parent::getReportField();
+        $grid_field->getConfig()
+            ->removeComponentsByType(GridFieldSortableHeader::class)
+            ->addComponent(new GridFieldTitleHeader());
+
+        return $grid_field;
     }
 }
