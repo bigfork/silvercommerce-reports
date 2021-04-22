@@ -14,7 +14,6 @@ use SilverCommerce\Reports\Items\DiscountUsageItem;
 
 /**
  * Simple report showing all sales over a period of time
- *
  */
 class DiscountUsageReport extends Report
 {

@@ -149,10 +149,12 @@ class DiscountUsageItem extends ViewableData
             return ArrayList::create();
         }
 
-        return AppliedDiscount::get()->filter([
+        return AppliedDiscount::get()->filter(
+            [
             'Estimate.ID' => $invoices->columnUnique(),
             'Code' => $code
-        ]);
+            ]
+        );
     }
 
     /**
@@ -180,10 +182,12 @@ class DiscountUsageItem extends ViewableData
         ];
 
         return Invoice::get()
-            ->filter([
+            ->filter(
+                [
                 'Status' => $statuses,
                 'Discounts.Code' => $code
-            ])->where($date_filter);
+                ]
+            )->where($date_filter);
     }
 
     public function canView($member = null)

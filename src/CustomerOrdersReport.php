@@ -118,7 +118,9 @@ class CustomerOrdersReport extends Report
      */
     public function getReportField()
     {
-        /** @var \SilverStripe\Forms\GridField\GridField */
+        /**
+ * @var \SilverStripe\Forms\GridField\GridField 
+*/
         $grid_field = parent::getReportField();
         $grid_field->getConfig()
             ->removeComponentsByType(GridFieldSortableHeader::class)

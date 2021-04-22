@@ -13,7 +13,7 @@ use SilverStripe\Forms\GridField\GridFieldSortableHeader;
 /**
  * Provide top level totals of sales, orders, tax and postage
  * 
- * @package SilverCommerce
+ * @package    SilverCommerce
  * @subpackage Reports
  */
 class SalesTotalsReport extends SalesReport
@@ -103,7 +103,9 @@ class SalesTotalsReport extends SalesReport
      */
     public function getReportField()
     {
-        /** @var \SilverStripe\Forms\GridField\GridField */
+        /**
+ * @var \SilverStripe\Forms\GridField\GridField 
+*/
         $grid_field = parent::getReportField();
         $grid_field->getConfig()
             ->removeComponentsByType(GridFieldSortableHeader::class)

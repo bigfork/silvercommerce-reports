@@ -20,3 +20,4 @@
 ## 1.1.1
 
 * Add discount usage report
+* Minor code cleanups

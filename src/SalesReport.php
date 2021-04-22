@@ -13,7 +13,6 @@ use SilverCommerce\OrdersAdmin\Model\Invoice;
 
 /**
  * Simple report showing all sales over a period of time
- *
  */
 class SalesReport extends Report
 {

@@ -9,7 +9,6 @@ use SilverStripe\View\ViewableData;
 
 /**
  * Item that can be loaded into a sales report
- *
  */
 class SalesTotalsReportItem extends ViewableData
 {

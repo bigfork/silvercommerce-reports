@@ -88,15 +88,19 @@ class ItemsOrderedReport extends SalesReport
     {
         $fields = parent::parameterFields();
 
-        $fields->push(TextField::create(
-            'Filter_StockID',
-            'Stock ID'
-        ));
+        $fields->push(
+            TextField::create(
+                'Filter_StockID',
+                'Stock ID'
+            )
+        );
         
-        $fields->push(TextField::create(
-            'Filter_ProductName',
-            'Product Name'
-        ));
+        $fields->push(
+            TextField::create(
+                'Filter_ProductName',
+                'Product Name'
+            )
+        );
 
         return $fields;
     }

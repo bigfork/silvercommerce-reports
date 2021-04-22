@@ -9,7 +9,6 @@ use SilverStripe\View\ViewableData;
 
 /**
  * Item that can be loaded into an OrderItem report
- *
  */
 class ItemsOrderedReportItem extends ViewableData
 {
