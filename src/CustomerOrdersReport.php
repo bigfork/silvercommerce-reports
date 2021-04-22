@@ -14,7 +14,6 @@ use SilverCommerce\OrdersAdmin\Model\Invoice;
 use SilverCommerce\ContactAdmin\Model\Contact;
 use SilverCommerce\Reports\Items\CustomerOrdersItem;
 use SilverStripe\Forms\GridField\GridFieldSortableHeader;
-use SilverStripe\Security\Member;
 use Symbiote\GridFieldExtensions\GridFieldTitleHeader;
 
 class CustomerOrdersReport extends Report
@@ -37,8 +36,6 @@ class CustomerOrdersReport extends Report
 
     public function columns()
     {
-        $singleton = Contact::singleton();
-
         return array(
             'FirstName' => _t(CustomerOrdersItem::class . 'FirstName', 'First Name'),
             'Surname' => _t(CustomerOrdersItem::class . 'Surname', 'Surname'),

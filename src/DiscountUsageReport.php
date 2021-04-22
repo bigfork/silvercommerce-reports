@@ -3,18 +3,13 @@
 namespace SilverCommerce\Reports;
 
 use DateTime;
-use SilverStripe\ORM\DB;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\Reports\Report;
 use SilverStripe\Forms\DateField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Control\HTTPRequest;
-use SilverStripe\Forms\DropdownField;
 use SilverStripe\Core\Injector\Injector;
-use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverCommerce\OrdersAdmin\Model\Invoice;
 use SilverCommerce\Discounts\Model\DiscountCode;
-use SilverCommerce\Discounts\Model\AppliedDiscount;
 use SilverCommerce\Reports\Items\DiscountUsageItem;
 
 /**
