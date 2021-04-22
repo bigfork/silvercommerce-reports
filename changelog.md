@@ -16,3 +16,7 @@
 
 * Improve customer sales report with more data
 * Remove sort from Sales Totals report
+
+## 1.1.1
+
+* Add discount usage report
