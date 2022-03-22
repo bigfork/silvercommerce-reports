@@ -41,8 +41,8 @@ class CustomerOrdersReport extends Report
             'Surname' => _t(CustomerOrdersItem::class . 'Surname', 'Surname'),
             'Email' => _t(CustomerOrdersItem::class . 'Email', 'Email'),
             'InvoiceCount' => _t(CustomerOrdersItem::class . 'InvoiceCount', 'Total Invoices'),
-            'InvoiceTotal' => _t(CustomerOrdersItem::class . 'InvoiceTotal', 'Total Invoice Value'),
-            'InvoiceTax' => _t(CustomerOrdersItem::class . 'InvoiceTax', 'Total Invoice Tax')
+            'NiceInvoiceTotal' => _t(CustomerOrdersItem::class . 'InvoiceTotal', 'Total Invoice Value'),
+            'NiceInvoiceTax' => _t(CustomerOrdersItem::class . 'InvoiceTax', 'Total Invoice Tax')
         );
     }
 

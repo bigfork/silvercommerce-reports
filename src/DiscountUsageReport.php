@@ -40,10 +40,10 @@ class DiscountUsageReport extends Report
             'Code' => _t(DiscountUsageItem::class . 'Code', 'Code'),
             'Title' => _t(DiscountUsageItem::class . 'Title', 'Title'),
             'CodeUses' => _t(DiscountUsageItem::class . 'CodeUses', 'Code Uses'),
-            'DiscountValue' => _t(DiscountUsageItem::class . 'DiscountValue', 'Total Discount'),
+            'NiceDiscountValue' => _t(DiscountUsageItem::class . 'DiscountValue', 'Total Discount'),
             'InvoiceCount' => _t(DiscountUsageItem::class . 'InvoiceCount', 'Number of Invoices'),
-            'InvoiceSubTotal' => _t(DiscountUsageItem::class . 'InvoiceTotal', 'Total Sales (ex. Tax)'),
-            'InvoiceTax' => _t(DiscountUsageItem::class . 'InvoiceTax', 'Total Tax')
+            'NiceInvoiceSubTotal' => _t(DiscountUsageItem::class . 'InvoiceTotal', 'Total Sales (ex. Tax)'),
+            'NiceInvoiceTax' => _t(DiscountUsageItem::class . 'InvoiceTax', 'Total Tax')
         ];
     }
 

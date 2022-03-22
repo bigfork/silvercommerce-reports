@@ -36,7 +36,7 @@ class CustomerOrdersItem extends ViewableData
         'Email' => 'Varchar',
         'InvoiceCount' => 'Int',
         'InvoiceTotal' => 'Currency',
-        'InvoiceTax' => 'Curency'
+        'InvoiceTax' => 'Currency'
     ];
 
     public function getFirstName()
@@ -65,7 +65,7 @@ class CustomerOrdersItem extends ViewableData
     }
 
     /**
-     * Get the total number of invoices applicable for this report
+     * Get the total value of invoices
      *
      * @return int
      */
@@ -79,6 +79,11 @@ class CustomerOrdersItem extends ViewableData
         }
 
         return $total;
+    }
+
+    public function getNiceInvoiceTotal()
+    {
+        return $this->obj('InvoiceTotal')->Nice();
     }
 
     /**
@@ -96,6 +101,11 @@ class CustomerOrdersItem extends ViewableData
         }
 
         return $total;
+    }
+
+    public function getNiceInvoiceTax()
+    {
+        return $this->obj('InvoiceTax')->Nice();
     }
 
     /**

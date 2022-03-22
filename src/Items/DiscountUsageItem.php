@@ -40,7 +40,7 @@ class DiscountUsageItem extends ViewableData
         'CodeUses' => 'Int',
         'InvoiceCount' => 'Int',
         'InvoiceSubTotal' => 'Currency',
-        'InvoiceTax' => 'Curency'
+        'InvoiceTax' => 'Currency'
     ];
 
     public function getTitle()
@@ -69,6 +69,11 @@ class DiscountUsageItem extends ViewableData
         }
 
         return $total;
+    }
+
+    public function getNiceDiscountValue()
+    {
+        return $this->obj('DiscountValue')->Nice();
     }
 
     /**
@@ -108,6 +113,11 @@ class DiscountUsageItem extends ViewableData
         return $total;
     }
 
+    public function getNiceInvoiceSubTotal()
+    {
+        return $this->obj('InvoiceSubTotal')->Nice();
+    }
+
     /**
      * Get the total number of invoices applicable for this report
      *
@@ -123,6 +133,11 @@ class DiscountUsageItem extends ViewableData
         }
 
         return $total;
+    }
+
+    public function getNiceInvoiceTax()
+    {
+        return $this->obj('InvoiceTax')->Nice();
     }
 
     /**

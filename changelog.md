@@ -21,3 +21,7 @@
 
 * Add discount usage report
 * Minor code cleanups
+
+## 1.1.2
+
+* Add nice styling to reports
