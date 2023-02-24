@@ -25,3 +25,7 @@
 ## 1.1.2
 
 * Add nice styling to reports
+
+## 1.1.3
+
+* Break date filter and statuses out into seperate methods (for better extendability)

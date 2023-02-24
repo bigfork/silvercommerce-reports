@@ -3,6 +3,7 @@
 namespace SilverCommerce\Reports;
 
 use DateTime;
+use LogicException;
 use SilverStripe\ORM\DB;
 use SilverStripe\Reports\Report;
 use SilverStripe\Forms\DateField;
@@ -10,6 +11,7 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Control\HTTPRequest;
 use SilverStripe\Core\Injector\Injector;
 use SilverCommerce\OrdersAdmin\Model\Invoice;
+use SilverStripe\ORM\DataList;
 
 /**
  * Simple report showing all sales over a period of time
@@ -61,38 +63,70 @@ class SalesReport extends Report
         return $cols;
     }
 
-    public function sourceRecords($params, $sort, $limit)
+    protected function getStatusesToFilter(): array
     {
-        $request = Injector::inst()->get(HTTPRequest::class);
-        $params = $request->getVar("filters");
         $statuses = Invoice::config()->paid_statuses;
+
+        if (!is_array($statuses)) {
+            throw new LogicException('Invoice paid statuses need to be an array');
+        }
+
+        return $statuses;
+    }
+
+    protected function getDateFilter(
+        array $params,
+        string $basetable,
+        string $datefield = 'StartDate'
+    ): array {
         $db = DB::get_conn();
         $start = null;
         $end = null;
-        $date_filter = null;
+        $date_filter = [];
 
-        if ($params && array_key_exists("StartDate", $params)) {
+        if (array_key_exists("StartDate", $params)) {
             $start = new DateTime($params["StartDate"]);
         }
 
-        if ($params && array_key_exists("EndDate", $params)) {
+        if (array_key_exists("EndDate", $params)) {
             $end = new DateTime($params["EndDate"]);
         }
 
         $format = "%Y-%m-%d";
-        $start_field = $db->formattedDatetimeClause(
-            '"Estimate"."StartDate"',
+        $date_field = $db->formattedDatetimeClause(
+            '"' . $basetable . '"."' . $datefield . '"',
             $format
         );
 
-        if ($start && $end) {
+        if (!empty($start) && !empty($end)) {
             $date_filter = [
-                $start_field . ' <= ?' =>  $end->format("Y-m-d"),
-                $start_field . ' >= ?' =>  $start->format("Y-m-d")
+                $date_field . ' <= ?' =>  $end->format("Y-m-d"),
+                $date_field . ' >= ?' =>  $start->format("Y-m-d")
             ];
         }
 
+        return $date_filter;
+    }
+
+    public function sourceRecords($params, $sort, $limit)
+    {
+        $request = Injector::inst()->get(HTTPRequest::class);
+        $statuses = $this->getStatusesToFilter();
+        $params = $request->getVar("filters");
+
+        if (!is_array($params)) {
+            $params = [];
+        }
+
         $list = Invoice::get();
+        $invoice = Invoice::singleton();
+        $base_table = $invoice->baseTable();
+
+        $date_filter = $this->getDateFilter(
+            $params,
+            $base_table,
+            'StartDate'
+        );
 
         if ($date_filter) {
             $list = $list->where($date_filter);
