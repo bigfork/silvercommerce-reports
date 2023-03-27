@@ -29,3 +29,8 @@
 ## 1.1.3
 
 * Break date filter and statuses out into seperate methods (for better extendability)
+
+## 1.1.4
+
+* Restore use of Report::sourceParams()
+* Add "Previous Year" to Sales Totals report
