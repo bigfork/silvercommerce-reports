@@ -110,9 +110,7 @@ class SalesReport extends Report
 
     public function sourceRecords($params, $sort, $limit)
     {
-        $request = Injector::inst()->get(HTTPRequest::class);
         $statuses = $this->getStatusesToFilter();
-        $params = $request->getVar("filters");
 
         if (!is_array($params)) {
             $params = [];
