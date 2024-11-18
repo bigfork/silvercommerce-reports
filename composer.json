@@ -26,11 +26,21 @@
         "issues": "https://github.com/silvercommerce/reports/issues"
     },
     "require": {
-        "silverstripe/framework": "~4.0",
-        "silverstripe/reports": "~4.0",
-        "silvercommerce/orders-admin": "~1.0",
-        "silvercommerce/catalogue-admin": "~1.0"
+        "silverstripe/framework": "^5",
+        "silverstripe/reports": "^5",
+        "silvercommerce/orders-admin": "dev-ss5",
+        "silvercommerce/catalogue-admin": "dev-ss5"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/bigfork/silvercommerce-catalogue-admin"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/bigfork/silvercommerce-orders-admin"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "SilverCommerce\\Reports\\": "src/"
